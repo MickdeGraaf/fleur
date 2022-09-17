@@ -11,16 +11,19 @@ import NFTSelector from '../components/NFTSelector';
 import NFTSelectModal from '../components/NFTSelectModal';
 import Header from '../components/Header';
 import { useAccount } from 'wagmi'
+import { useConnectModal } from "@rainbow-me/rainbowkit";
+import Flowers from '../components/Flowers';
 
 const Home: NextPage = () => {
 
   const { address } = useAccount();
 
   const topBids = useUserTopBids(address, {}) || {data: []};
+  const { openConnectModal } = useConnectModal();
   // @ts-ignore
   const [selectedNFT, setSelectedNFT] = useState((topBids && topBids.data) ? topBids.data[0] : undefined);
-  
   const [isSelectModalOpen, setSelectModalOpen] = useState(false);
+
 
   useEffect(() => {
     // setSelectedNFT(topBids.data[0]);
@@ -33,6 +36,10 @@ const Home: NextPage = () => {
   }
 
   const handleOpenSelectModal = () => {
+    if(!address && openConnectModal) {
+      openConnectModal();
+      return;
+    }
     setSelectModalOpen(true);
   }
 
@@ -84,6 +91,8 @@ const Home: NextPage = () => {
             />}
         </Container>
       </Center>
+
+      <Flowers />
 
     </Box>
   );

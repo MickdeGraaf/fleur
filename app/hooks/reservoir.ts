@@ -13,7 +13,7 @@ export const useUserTopBids = (
     const client = useReservoirClient();
 
     if(!user) {
-        return;
+        user = "";
     }
 
     const path = new URL(`${client?.apiBase}/orders/users/${user}/top-bids/v1`)
