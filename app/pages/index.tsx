@@ -99,7 +99,7 @@ const Home: NextPage = () => {
               <>
                {/* @ts-ignore */}
                <Center p="8px">
-                <Text><>Source: <Image display={"inline"} width={"10px"} height={"10px"} src={selectedNFT.source.icon}></Image> { selectedNFT.source.name} </></Text>
+                <Text><>Source: <Image display={"inline"} width={"10px"} height={"10px"} src={selectedNFT.source.icon as string}></Image> { selectedNFT.source.name} </></Text>
                </Center>
               </>}
 
