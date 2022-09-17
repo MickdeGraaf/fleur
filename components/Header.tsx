@@ -11,6 +11,7 @@ const Header = () => {
             <Flex
                         minH={'60px'}
                         py={{ base: 2 }}
+                        pt={"36px"}
                         align={'center'}
                     >
                         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
