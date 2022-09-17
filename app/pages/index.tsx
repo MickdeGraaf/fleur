@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css';
 import { useReservoirClient, useTokens, AcceptBidModal } from '@reservoir0x/reservoir-kit-ui'
 import { useEffect, useState } from 'react';
 import { useUserTopBids } from '../hooks/reservoir';
-import { Box, Center, Container, Text, Button } from '@chakra-ui/react';
+import { Box, Center, Container, Text, Button, Image } from '@chakra-ui/react';
 import NFTSelector from '../components/NFTSelector';
 import NFTSelectModal from '../components/NFTSelectModal';
 import Header from '../components/Header';
@@ -24,6 +24,7 @@ const Home: NextPage = () => {
   const [selectedNFT, setSelectedNFT] = useState((topBids && topBids.data) ? topBids.data[0] : undefined);
   const [isSelectModalOpen, setSelectModalOpen] = useState(false);
 
+  console.log(selectedNFT);
 
   useEffect(() => {
     // setSelectedNFT(topBids.data[0]);
@@ -61,6 +62,7 @@ const Home: NextPage = () => {
           maxW="md"
           boxShadow={"2xl"}
           m="3em"
+          mb="0"
           p="1em"
           borderRadius="16px"
           bg="#FFFFFF"
@@ -70,7 +72,10 @@ const Home: NextPage = () => {
           <NFTSelectModal setSelectedNFT={handleNFTItemClick} isOpen={isSelectModalOpen} onClose={() => {setSelectModalOpen(false)}} selectedNFT={null} topBids={topBids.data} />
           {/* {selectedNFT && <SellSteps NFT={selectedNFT} />} */}
 
-          { selectedNFT && selectedNFT.token && 
+          
+
+          { selectedNFT && selectedNFT.token &&
+          <>
             <AcceptBidModal 
               trigger={
                 <Button variant={"solid"} w="100%" size={"lg"} bg="linear-gradient(180deg, #D4EF00 6.77%, rgba(182, 211, 1, 0) 100%), #55DF00;" p="8">
@@ -88,7 +93,19 @@ const Home: NextPage = () => {
               onClose={() => {
                 console.log('AcceptBidModal Closed')
               }}
-            />}
+              />
+
+              {selectedNFT.source && selectedNFT.source.icon &&
+              <>
+               {/* @ts-ignore */}
+               <Text><>Source: <Image display={"inline"} width={"10px"} height={"10px"} src={selectedNFT.source.icon}></Image> { selectedNFT.source.name} </></Text>
+              </>}
+
+            </> 
+
+              
+            } 
+    
         </Container>
       </Center>
 
