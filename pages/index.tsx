@@ -13,6 +13,7 @@ import Header from '../components/Header';
 import { useAccount } from 'wagmi'
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import Flowers from '../components/Flowers';
+import Socials from '../components/Socials';
 
 const Home: NextPage = () => {
 
@@ -104,14 +105,13 @@ const Home: NextPage = () => {
               </>}
 
             </> 
-
-              
             } 
     
         </Container>
       </Center>
 
       <Flowers />
+      <Socials />
 
     </Box>
   );
