@@ -60,6 +60,15 @@ const NFTSelectModal = ({isOpen, onClose, topBids, setSelectedNFT}: NFTSelectMod
         totalValue += nft.value;
     }
 
+    const formatooooooor = new Intl.NumberFormat('en-US', {
+        // style: 'currency',
+        // currency: 'USD',
+        maximumFractionDigits: 4,
+        // These options are needed to round to whole numbers if that's what you want.
+        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+        //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+      });
+
     return (
         <Modal size={"lg"} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -69,7 +78,7 @@ const NFTSelectModal = ({isOpen, onClose, topBids, setSelectedNFT}: NFTSelectMod
           <ModalBody>
             <Input value={filterText} onChange={handleFilterTextChange} placeholder="Search by NFT id, name or address" />
             <Divider my="8px" />
-            Total value of NFTs meeting criteria: {totalValue} ETH
+            Total value of NFTs meeting criteria: {formatooooooor.format(totalValue)} ETH
             <Divider my="8px" />
             <NFTList topBids={filteredBids} setSelectedNFT={setSelectedNFT} />
           </ModalBody>
