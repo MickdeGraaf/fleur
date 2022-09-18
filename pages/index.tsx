@@ -111,7 +111,7 @@ const Home: NextPage = () => {
       </Center>
 
       <Flowers />
-      <Socials />
+      {/* <Socials /> */}
 
     </Box>
   );
