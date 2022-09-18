@@ -55,6 +55,11 @@ const NFTSelectModal = ({isOpen, onClose, topBids, setSelectedNFT}: NFTSelectMod
 
     console.log("Filtered bids", filteredBids);
 
+    let totalValue = 0;
+    for(let nft of filteredBids) {
+        totalValue += nft.value;
+    }
+
     return (
         <Modal size={"lg"} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -63,6 +68,8 @@ const NFTSelectModal = ({isOpen, onClose, topBids, setSelectedNFT}: NFTSelectMod
           <ModalCloseButton />
           <ModalBody>
             <Input value={filterText} onChange={handleFilterTextChange} placeholder="Search by NFT id, name or address" />
+            <Divider my="8px" />
+            Total value of NFTs meeting criteria: {totalValue} ETH
             <Divider my="8px" />
             <NFTList topBids={filteredBids} setSelectedNFT={setSelectedNFT} />
           </ModalBody>
